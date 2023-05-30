@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Banner.css";
+import axios from "./axios";
+import requests from "./requests";
 
 function Banner() {
+	const [movie, setMovie] = useState([]);
+
+	useEffect(() => {
+		async function fetchData() {
+			const request = await axios.get(requests.fetchNetflixOriginals);
+			setMovie(
+				request.data.results[
+					Math.floor(Math.random() * request.data.results.length - 1)
+				]
+			);
+			return request;
+		}
+		fetchData();
+	}, []);
+
 	function truncate(str, n) {
 		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
 	}
@@ -9,23 +26,23 @@ function Banner() {
 	return (
 		<header
 			className="banner"
+			// is there a way to do this without using inline styles?
 			style={{
 				backgroundSize: "cover",
-				backgroundImage: `url("https://preview.redd.it/zc3nnfklwz941.jpg?auto=webp&s=c0bcbce019bc5f774529821335c2b962330c3db5")`,
+				backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
 				backgroundPosition: "center center",
 			}}
 		>
 			<div className="banner__contents">
-				<h1 className="banner__title">Movie Name</h1>
+				<h1 className="banner__title">
+					{movie?.title || movie?.name || movie?.original_name}
+				</h1>
 				<div className="banner__buttons">
 					<button className="banner__button">Play</button>
 					<button className="banner__button">My List</button>
 				</div>
 				<h1 className="banner__description">
-					{truncate(
-						`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsuem lorem ipsume lorem ipsum`,
-						150
-					)}
+					{truncate(movie?.overview, 150)}
 				</h1>
 
 				<div className="banner--fadeBottom"></div>
