@@ -1,0 +1,45 @@
+/* Need to refactor these to use flexbox better instead of all the px values */
+.nav {
+    position: fixed;
+    top: 0;
+    padding: 20px;
+    width: 100%;
+    z-index: 1;
+
+    /* animation */
+    transition-timing-function: ease-in;
+    transition: all 0.5s;
+}
+
+.nav__contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.nav__black {
+    background-color: #111;
+}
+
+.nav__logo {
+    position: fixed;
+    top: 20px;
+    left: 0;
+
+    cursor: pointer;
+    object-fit: contain;
+    width: 100px;
+    margin-right: 20px;
+    padding-left: 20px;
+}
+
+.nav__avatar {
+    position: fixed;
+    right: 20px;
+
+    cursor: pointer;
+    object-fit: contain;
+    height: 40px;
+}
