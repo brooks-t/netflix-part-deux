@@ -1,0 +1,84 @@
+.loginScreen {
+    position: relative;
+    height: 100vh;
+    background: url(https://repository-images.githubusercontent.com/299409710/b42f7780-0fe1-11eb-8460-e459acd20fb4) center no-repeat;
+    background-size: cover;
+}
+
+.loginScreen__background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.loginScreen__logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 150px;
+}
+
+.loginScreen__button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #e50914;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.loginScreen__body {
+    position: relative;
+    top: 30%;
+    z-index: 1;
+    color: white;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+.loginScreen__body>h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.loginScreen__body>h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.loginScreen__body>h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.loginScreen__input>form>input {
+    padding: 10px;
+    width: 30%;
+    margin-right: 10px;
+    border: none;
+    border-radius: 2px;
+    font-size: 1rem;
+    outline-width: 0;
+    max-width: 400px;
+}
+
+.loginScreen__getStarted {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #e50914;
+    color: white;
+    font-weight: 600;
+}
