@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
+import { auth } from "../firebase";
 import "./SignupScreen.css";
 
 function SignupScreen() {
+	const emailRef = useRef(null);
+	const passwordRef = useRef(null);
+
+	// Note: createUserWithEmailAndPassword() is a built-in firebase function that creates a new user account associated with the specified email address and password.
 	const register = (e) => {
 		e.preventDefault();
+
+		auth
+			.createUserWithEmailAndPassword(
+				emailRef.current.value,
+				passwordRef.current.value
+			)
+			.then((authUser) => {
+				console.log(authUser);
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 
 	// Note: preventDefault() is used to prevent the default action of an element from happening. In this case, it prevents the form from submitting and refreshing the page.
@@ -15,8 +32,8 @@ function SignupScreen() {
 		<div className="signupScreen">
 			<form>
 				<h1>Sign In</h1>
-				<input placeholder="Email" type="email" />
-				<input placeholder="Password" type="password" />
+				<input ref={emailRef} placeholder="Email" type="email" />
+				<input ref={passwordRef} placeholder="Password" type="password" />
 				<button type="submit" onClick={signIn}>
 					Sign In
 				</button>
